@@ -7,6 +7,8 @@ plugins {
     signing
 }
 
+version = "1.0.0"
+
 android {
     namespace = "com.appliedrec.facerecognition.dlib"
     compileSdk = 36
