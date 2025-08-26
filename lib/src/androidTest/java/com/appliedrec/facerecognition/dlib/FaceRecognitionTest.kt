@@ -56,10 +56,10 @@ class ExampleInstrumentedTest {
 
     @Test
     fun testCompareSubjectFaces(): Unit = runBlocking {
-        val threshold = 0.5f
         FaceDetectionRetinaFace.create(InstrumentationRegistry.getInstrumentation().targetContext).use { faceDetection ->
             FaceRecognitionDlib.create(InstrumentationRegistry.getInstrumentation().targetContext)
                 .use { recognition ->
+                    val threshold = recognition.defaultThreshold
                     val subjectTemplates = mutableListOf<Pair<String,FaceTemplate<FaceTemplateVersionV16, FloatArray>>>()
                     for (fileName in listOf(
                         "subject1" to "-01.jpg",
