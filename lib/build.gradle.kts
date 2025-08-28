@@ -7,7 +7,7 @@ plugins {
     signing
 }
 
-version = "1.1.0"
+version = "1.1.1"
 
 android {
     namespace = "com.appliedrec.facerecognition.dlib"
@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.verid3.serialization)
+    implementation(libs.kotlinx.coroutines.core)
     api(libs.verid3.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
