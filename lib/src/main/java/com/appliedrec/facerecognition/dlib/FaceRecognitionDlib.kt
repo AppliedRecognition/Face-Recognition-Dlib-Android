@@ -8,7 +8,13 @@ import com.appliedrec.verid3.common.FaceRecognition
 import com.appliedrec.verid3.common.FaceTemplate
 import com.appliedrec.verid3.common.IImage
 import com.appliedrec.verid3.common.serialization.toBitmap
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import java.io.File
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.sqrt
 
 class FaceRecognitionDlib private constructor(dlibLandmarksModelPath: String, modelPath: String) : FaceRecognition<FaceTemplateVersionV16, FloatArray> {
 
@@ -44,7 +50,7 @@ class FaceRecognitionDlib private constructor(dlibLandmarksModelPath: String, mo
 
     override val version: FaceTemplateVersionV16 = FaceTemplateVersionV16
 
-    override val defaultThreshold: Float = 0.91f
+    override val defaultThreshold: Float = 0.8f
 
     private var nativeContext: Long?
 
@@ -74,29 +80,32 @@ class FaceRecognitionDlib private constructor(dlibLandmarksModelPath: String, mo
     override suspend fun compareFaceRecognitionTemplates(
         faceRecognitionTemplates: List<FaceTemplate<FaceTemplateVersionV16, FloatArray>>,
         template: FaceTemplate<FaceTemplateVersionV16, FloatArray>
-    ): FloatArray {
-        // precompute ||q||^2
-        var q2 = 0f
-        for (v in template.data) q2 += v * v
+    ): FloatArray = coroutineScope {
+        require(faceRecognitionTemplates.all { it.data.size == template.data.size }) {
+            "Face recognition templates must have the same length"
+        }
+        val a = template.data
+        faceRecognitionTemplates.map { it.data }
+            .chunked(100)
+            .map { chunk ->
+                async {
+                    FloatArray(chunk.size) { idx ->
+                        val b = chunk[idx]
+                        val cos = innerProduct(a, b)
+                        ((cos + 1f) * 0.5f).coerceIn(0f, 1f)
+                    }
+                }
+            }
+            .awaitAll()
+            .reduce { acc, arr -> acc + arr }
+    }
 
-        return faceRecognitionTemplates.map { x ->
-            // dot(q, x)
-            var dot = 0f
-            for (i in template.data.indices) dot += template.data[i] * x.data[i]
+    private fun innerProduct(v1: FloatArray, v2: FloatArray): Float {
+        return v1.zip(v2) { a, b -> a * b }.sum()
+    }
 
-            // ||x||^2
-            var x2 = 0f
-            for (v in x.data) x2 += v * v
-
-            // d^2 = ||q - x||^2  (clamped to avoid tiny negative from roundoff)
-            val d2 = kotlin.math.max(0f, q2 + x2 - 2f * dot)
-
-            // similarity in [0,1]: 1 - d^2/4  (cosine mapped to 0..1)
-            val s = 1f - 0.25f * d2
-
-            // clamp to [0,1] for numerical safety
-            s.coerceIn(0f, 1f)
-        }.toFloatArray()
+    private fun norm(v: FloatArray): Float {
+        return sqrt(innerProduct(v, v))
     }
 
     override suspend fun close() {

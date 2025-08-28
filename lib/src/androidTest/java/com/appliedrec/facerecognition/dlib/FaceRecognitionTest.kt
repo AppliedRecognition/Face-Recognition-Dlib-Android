@@ -17,6 +17,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import java.io.InputStream
+import kotlin.math.sqrt
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -52,6 +53,39 @@ class ExampleInstrumentedTest {
                     }
                 }
         }
+    }
+
+    @Test
+    fun testFaceTemplateIsNormalized(): Unit = runBlocking {
+        FaceDetectionRetinaFace.create(InstrumentationRegistry.getInstrumentation().targetContext).use { faceDetection ->
+            FaceRecognitionDlib.create(InstrumentationRegistry.getInstrumentation().targetContext)
+                .use { recognition ->
+                    for (fileName in listOf(
+                        "subject1-01.jpg",
+                        "subject1-02.jpg",
+                        "subject2-01.jpg"
+                    )) {
+                        InstrumentationRegistry.getInstrumentation().context.assets.open(fileName)
+                            .use { inputStream ->
+                                val bitmap = BitmapFactory.decodeStream(inputStream)
+                                val image = Image.fromBitmap(bitmap)
+                                val face = faceDetection.detectFacesInImage(image, 1).first()
+                                val templates = recognition.createFaceRecognitionTemplates(listOf(face), image)
+                                Assert.assertEquals(templates.size, 1)
+                                val norm = norm(templates.first().data)
+                                Assert.assertEquals(1f, norm, 0.01f)
+                            }
+                    }
+                }
+        }
+    }
+
+    private fun innerProduct(v1: FloatArray, v2: FloatArray): Float {
+        return v1.zip(v2) { a, b -> a * b }.sum()
+    }
+
+    private fun norm(v: FloatArray): Float {
+        return sqrt(innerProduct(v, v))
     }
 
     @Test

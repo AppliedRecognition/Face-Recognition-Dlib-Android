@@ -11,6 +11,7 @@ verid3Common = "4.0.0"
 verid3Serialization = "1.0.4"
 vanniktech = "0.34.0"
 retinaFace = "1.0.2"
+kotlinxCoroutinesCore = "1.10.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -22,6 +23,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 verid3-common = { group = "com.appliedrec", name = "verid-common", version.ref = "verid3Common" }
 verid3-serialization = { group = "com.appliedrec", name = "verid-serialization", version.ref = "verid3Serialization" }
 face-detection-retinaface = { group = "com.appliedrec", name = "face-detection-retinaface", version.ref = "retinaFace" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
