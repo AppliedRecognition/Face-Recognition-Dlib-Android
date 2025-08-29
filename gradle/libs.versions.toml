@@ -12,6 +12,7 @@ verid3Serialization = "1.0.4"
 vanniktech = "0.34.0"
 retinaFace = "1.0.2"
 kotlinxCoroutinesCore = "1.10.2"
+dokka = "2.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -30,4 +31,5 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 vanniktech-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 
