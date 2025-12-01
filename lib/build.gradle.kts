@@ -1,13 +1,16 @@
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.vanniktech.publish)
+    alias(libs.plugins.dokka)
     signing
 }
 
-version = "1.1.1"
+version = "1.1.2"
 
 android {
     namespace = "com.appliedrec.facerecognition.dlib"
@@ -23,9 +26,6 @@ android {
             cmake {
                 cppFlags += "-std=c++17 -frtti -fexceptions"
             }
-        }
-        ndk {
-            abiFilters += listOf("x86_64", "arm64-v8a")
         }
     }
 
@@ -51,6 +51,8 @@ android {
         jniLibs {
             pickFirsts.add("lib/arm64-v8a/libonnxruntime.so")
             pickFirsts.add("lib/x86_64/libonnxruntime.so")
+            pickFirsts.add("lib/armeabi-v7a/libonnxruntime.so")
+            pickFirsts.add("lib/x86/libonnxruntime.so")
         }
     }
     externalNativeBuild {
@@ -108,4 +110,15 @@ mavenPublishing {
 signing {
     useGpgCmd()
     sign(publishing.publications)
+}
+
+dokka {
+    dokkaPublications.html {
+        outputDirectory.set(rootProject.file("docs"))
+    }
+}
+
+tasks.withType<DokkaTaskPartial>().configureEach {
+    moduleName.set("Dlib face recognition")
+    moduleVersion.set(project.version.toString())
 }

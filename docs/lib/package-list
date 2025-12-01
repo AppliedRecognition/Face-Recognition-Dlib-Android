@@ -1,0 +1,23 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.appliedrec.facerecognition.dlib////PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/index.html
+$dokka.location:com.appliedrec.facerecognition.dlib/DlibLandmarks///PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-dlib-landmarks/index.html
+$dokka.location:com.appliedrec.facerecognition.dlib/DlibLandmarks/DlibLandmarks/#kotlin.String/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-dlib-landmarks/-dlib-landmarks.html
+$dokka.location:com.appliedrec.facerecognition.dlib/DlibLandmarks/close/#/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-dlib-landmarks/close.html
+$dokka.location:com.appliedrec.facerecognition.dlib/DlibLandmarks/createAlignedFace/#android.graphics.Bitmap#android.graphics.Rect/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-dlib-landmarks/create-aligned-face.html
+$dokka.location:com.appliedrec.facerecognition.dlib/DlibLandmarks/nativeContext/#/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-dlib-landmarks/native-context.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceRecognitionDlib.Companion///PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-recognition-dlib/-companion/index.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceRecognitionDlib.Companion/create/#android.content.Context/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-recognition-dlib/-companion/create.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceRecognitionDlib///PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-recognition-dlib/index.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceRecognitionDlib/close/#/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-recognition-dlib/close.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceRecognitionDlib/compareFaceRecognitionTemplates/#kotlin.collections.List[com.appliedrec.verid3.common.FaceTemplate[com.appliedrec.facerecognition.dlib.FaceTemplateVersionV16,kotlin.FloatArray]]#com.appliedrec.verid3.common.FaceTemplate[com.appliedrec.facerecognition.dlib.FaceTemplateVersionV16,kotlin.FloatArray]/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-recognition-dlib/compare-face-recognition-templates.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceRecognitionDlib/createFaceRecognitionTemplates/#kotlin.collections.List[com.appliedrec.verid3.common.Face]#com.appliedrec.verid3.common.IImage/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-recognition-dlib/create-face-recognition-templates.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceRecognitionDlib/defaultThreshold/#/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-recognition-dlib/default-threshold.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceRecognitionDlib/version/#/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-recognition-dlib/version.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceTemplateDlib///PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-template-dlib/index.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceTemplateDlib/FaceTemplateDlib/#kotlin.FloatArray/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-template-dlib/-face-template-dlib.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceTemplateDlib/equals/#kotlin.Any?/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-template-dlib/equals.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceTemplateDlib/hashCode/#/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-template-dlib/hash-code.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceTemplateVersionV16///PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-template-version-v16/index.html
+$dokka.location:com.appliedrec.facerecognition.dlib/FaceTemplateVersionV16/id/#/PointingToDeclaration/lib/com.appliedrec.facerecognition.dlib/-face-template-version-v16/id.html
+com.appliedrec.facerecognition.dlib
