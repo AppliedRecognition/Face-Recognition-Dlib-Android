@@ -10,7 +10,7 @@ plugins {
     signing
 }
 
-version = "1.1.1"
+version = "1.1.2"
 
 android {
     namespace = "com.appliedrec.facerecognition.dlib"
@@ -26,9 +26,6 @@ android {
             cmake {
                 cppFlags += "-std=c++17 -frtti -fexceptions"
             }
-        }
-        ndk {
-            abiFilters += listOf("x86_64", "arm64-v8a")
         }
     }
 
@@ -54,6 +51,8 @@ android {
         jniLibs {
             pickFirsts.add("lib/arm64-v8a/libonnxruntime.so")
             pickFirsts.add("lib/x86_64/libonnxruntime.so")
+            pickFirsts.add("lib/armeabi-v7a/libonnxruntime.so")
+            pickFirsts.add("lib/x86/libonnxruntime.so")
         }
     }
     externalNativeBuild {
